@@ -5,7 +5,7 @@ USE joy_of_painting;
 CREATE TABLE IF NOT EXISTS episodes (
     episode_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
-    air_date DATE NOT NULL,
+    air_date VARCHAR(255) NOT NULL,
     episode_number INT NOT NULL,
     season_number INT NOT NULL,
     painting_img_src VARCHAR(255) NOT NULL,
