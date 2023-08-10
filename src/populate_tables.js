@@ -167,7 +167,7 @@ function makeEpisodesTable() {
 makeColorsTable();
 makeSubjectMatterTable();
 */
-// makeEpisodesTable();
+makeEpisodesTable();
 
 
 
@@ -175,10 +175,21 @@ async function testCSV() {
   const csv = require('csv-parser')
   const fs = require('fs')
   const results = [];
+  const headers = []
 
   fs.createReadStream('data/jop-colors_used.csv')
     .pipe(csv())
-    .on('data', (data) => results.push(data))
+    .on('data', (data) => {
+      modified_data = [];
+      try {
+        modified_data.push(data.id, data.painting_title, data.season, data.episode, data.youtube_src)
+        results.push(modified_data);
+      }
+      catch (err) {
+        results.push([NULL,NULL,NULL,NULL,NULL])
+        console.log(err);
+      }
+    })
     .on('end', () => {
       console.log(results);
       // [
@@ -187,4 +198,3 @@ async function testCSV() {
       // ]
     });
 }
-testCSV();
