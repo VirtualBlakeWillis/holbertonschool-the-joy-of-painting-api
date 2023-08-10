@@ -1,15 +1,16 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const fs = require('fs');
 // Replace these with your MySQL credentials
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  multipleStatements: true
+  multipleStatements: true,
+  insecureAuth : true
 });
 
 // Read the SQL script file
-const scriptFilePath = './sql/database_init.sql';
+const scriptFilePath = './sql/database_init_2.sql';
 const sqlScript = fs.readFileSync(scriptFilePath, 'utf8');
 
 // Connect to the database
